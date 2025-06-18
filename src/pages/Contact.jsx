@@ -50,7 +50,10 @@ function Contact() {
     const baseURL = import.meta.env.VITE_BASE_URL;
 
     try {
-      await axios.post(`${baseURL}/api/Contact`, formData);
+      const res = await axios.post(`${baseURL}/api/email/contact`, formData);
+      if (res.status !== 200) {
+        throw new Error('Failed to send message');
+      }
       setSubmitSuccess(true);
       setFormData({
         name: '',

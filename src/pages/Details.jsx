@@ -1,5 +1,4 @@
 import {React, useState, useEffect} from 'react';
-// import axios from "axios";
 import { Link, useParams } from 'react-router-dom';
 import { FaChevronRight } from "react-icons/fa";
 import { FaChevronLeft } from "react-icons/fa";
@@ -9,6 +8,7 @@ import { FaStar } from "react-icons/fa6";
 import { FaStarHalfAlt } from "react-icons/fa";
 import { useDesigns } from "../context/DesignContext";
 import { useStyle } from "../context/StyleContext";
+import axios from 'axios';
 
 
 export default function Design() {
@@ -27,6 +27,8 @@ export default function Design() {
     phone: '',
     message: ''
   });
+  const [isLoading, setIsLoading] = useState(false);
+  const [submitSuccess, setSubmitSuccess] = useState(false);
 // const [simelerDesigns, setSimilarDesigns] = useState(designs);
 
 // useEffect(() => {
@@ -66,7 +68,32 @@ useEffect(() => {
 //   setSimilarDesigns(result);
 // }
 
-  const handleSubmit = () => {} 
+  const handleSubmit = async (e) =>  {
+    e.preventDefault();
+    setIsLoading(true);
+    const baseURL = import.meta.env.VITE_BASE_URL;
+
+    console.log("Submitting form with data:", formData);
+    try {
+      const res = await axios.post(`${baseURL}/api/email/email`, formData);
+      if (res.status !== 200) {
+        throw new Error('Failed to send message');
+      }
+      setSubmitSuccess(true);
+      setFormData({
+        name: '',
+        email: '',
+        phone: '',
+        subject: '',
+        message: ''
+      });
+    } catch (err) {
+      console.error(err);
+      alert('فشل في إرسال الرسالة');
+    } finally {
+      setIsLoading(false);
+    }
+  } 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
@@ -603,6 +630,7 @@ useEffect(() => {
         <div className="mb-12">
           <h2 className="text-2xl font-bold text-gray-900 mb-6">Request More Information</h2>
           <div className="bg-white p-6 rounded-lg shadow-md">
+          {!submitSuccess && (
             <form id="inquiryForm" onSubmit={handleSubmit}>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                 <div>
@@ -704,10 +732,21 @@ useEffect(() => {
                 <button
                   type="submit"
                   className="px-6 py-3 bg-indigo-600 text-white rounded-md font-medium hover:bg-indigo-700 transition whitespace-nowrap cursor-pointer !rounded-button"
-                >Request Consultation
+                >  {isLoading ? 'loading...' : 'Request Consultation'}
                 </button>
               </div>
-            </form>
+            </form>)}
+            {submitSuccess && (
+              <div className="text-center">
+                <h3 className="text-lg font-semibold text-gray-900 mb-4">Thank You!</h3>
+                <p className="text-gray-700 mb-4">Your request has been submitted successfully. We will get back to you shortly.</p>
+                <button
+                  onClick={() => setSubmitSuccess(false)}
+                  className="px-6 py-3 bg-indigo-600 text-white rounded-md font-medium hover:bg-indigo-700 transition whitespace-nowrap cursor-pointer !rounded-button"
+                >Close
+                </button>
+              </div>
+            )}
           </div>
         </div>
       </main>

@@ -197,7 +197,7 @@ export default function EditDesign() {
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-4">
               <button
-                onClick={() => navigate('/admin-dashboard')}
+                onClick={() => navigate('/admin')}
                 className="flex items-center text-indigo-600 hover:text-indigo-800"
               >
                 <FaArrowLeft className="mr-2" />
