@@ -410,7 +410,8 @@ useEffect(() => {
                     <ul className="space-y-3 text-gray-700">
                       {design.colors.map((color, index) => (
                         <li key={index} className="flex items-start">
-                        <div className="w-4 h-4 rounded-full bg-[#F8F8F8] mt-1 mr-3 border border-gray-200"></div>
+                        <div className='w-4 h-4 rounded-full mt-1 mr-3 border border-gray-200'
+                        style={{backgroundColor: color.colorNumber}}></div>
                         <div>
                           <span className="font-medium">{color.name}</span> - {}{color.application}
                         </div>
