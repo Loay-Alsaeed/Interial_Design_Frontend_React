@@ -71,25 +71,20 @@ export default function Footer() {
                             </li>
                             <li className="flex items-center">
                                 <MdEmail className='mr-2'/>
-                                <span>info@interiorvision.com</span>
+                                <span>loayalsaeed1234@gmail.com</span>
                             </li>
                         </ul>
                     </div>
                 </div>
+                
                 <div className="border-t border-gray-700 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
                     <p className="text-gray-400">© 2025 InteriorVision. All rights reserved.</p>
+                    <p className="text-gray-400">Developed by <a href="https://www.linkedin.com/in/loiy-alsaeed-118360271/" target="_blank" rel="noopener noreferrer" >Loiy Alsaeed</a></p>
                     <div className="mt-4 md:mt-0 flex space-x-6">
                         <a href="#" className="text-gray-400 hover:text-white transition cursor-pointer">Privacy Policy</a>
                         <a href="#" className="text-gray-400 hover:text-white transition cursor-pointer">Terms of Service</a>
                         <a href="#" className="text-gray-400 hover:text-white transition cursor-pointer">Cookie Policy</a>
                     </div>
-                    {/* <div className="mt-4 md:mt-0 flex items-center space-x-4">
-                        <span className="text-gray-400">Payment Methods:</span>
-                        <i className="fab fa-cc-visa text-xl text-gray-300"></i>
-                        <i className="fab fa-cc-mastercard text-xl text-gray-300"></i>
-                        <i className="fab fa-cc-paypal text-xl text-gray-300"></i>
-                        <i className="fab fa-cc-amex text-xl text-gray-300"></i>
-                    </div> */}
                 </div>
             </div>
         </footer>

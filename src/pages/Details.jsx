@@ -29,13 +29,7 @@ export default function Design() {
   });
   const [isLoading, setIsLoading] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
-// const [simelerDesigns, setSimilarDesigns] = useState(designs);
 
-// useEffect(() => {
-//   if (design) {
-//     console.log("✅ Design updated:", design);
-//   }
-// }, [design]);
 
 useEffect(() => {
   if (designs.length > 0) {
@@ -59,14 +53,6 @@ useEffect(() => {
     }
   }
 }, [design, stylesProvider, id]);
-
-
-
-
-// const handleSimelerDesigns = () => {
-//   let result = designs.filter((design) => (design.style !== design.style && design.id !== id));
-//   setSimilarDesigns(result);
-// }
 
   const handleSubmit = async (e) =>  {
     e.preventDefault();
@@ -102,27 +88,9 @@ useEffect(() => {
     }));
   };
 
-
-  
-  
-  // const fetchDesigns = async () => {
-  //   try {
-  //     const res = await axios.get(`http://localhost:5000/api/designs/${id}`);
-  //     setDesign(res.data);
-  //     console.log("✅ Loaded design:", res.data);
-  //   } catch (err) {
-  //     console.error("Failed to load design", err);
-  //   }
-  // };
-
-  useEffect(() => {
-    // fetchDesigns();
-    // handleSimelerDesigns();
-  }, []);
-
   const roomImages = Array.isArray(design?.images)
   ? design.images
-      .filter((img) => img && img.imageUrl) // تأكد أن الصورة موجودة ولها imageUrl
+      .filter((img) => img && img.imageUrl) 
       .map((img, index) => ({
         id: img.id,
         url: `${baseURL}/${img.imageUrl}`,
@@ -130,19 +98,12 @@ useEffect(() => {
       }))
   : [];
 
-
-  // console.log("Room images:", roomImages);
-  
-
   const toggleFavorite = () => {
     setIsFavorite(!isFavorite);
   };
   const goToSlide = (index) => {
     setCurrentSlide(index);
   };
-
-
-
 
   if (!design ) {
     return <div className="container mx-auto px-4 py-8">Loading...</div>;
@@ -242,7 +203,7 @@ useEffect(() => {
                   </button>
                 </div>
               </div>
-              {/* {Designer Info}
+              {/* {Designer Info} */}
               <div className="flex items-center mb-6">
                 <div className="w-12 h-12 bg-indigo-100 rounded-full flex items-center justify-center mr-3">
                   <span className="text-lg font-medium text-indigo-700">EJ</span>
@@ -254,7 +215,7 @@ useEffect(() => {
                 <button className="ml-auto px-4 py-2 text-sm border border-indigo-600 text-indigo-600 rounded-md hover:bg-indigo-50 transition whitespace-nowrap cursor-pointer !rounded-button">
                   Contact Designer
                 </button>
-              </div> */}
+              </div>
               {/* Rating */}
               <div className="flex items-center mb-6">
                 <div className="flex text-yellow-400 mr-2">
@@ -458,7 +419,7 @@ useEffect(() => {
                       
                     </ul>
                   </div>
-                  {/* <div>
+                  <div>
                     <div className="bg-white p-6 rounded-lg shadow-md mb-6">
                       <h3 className="text-lg font-semibold text-gray-900 mb-4">Color Psychology</h3>
                       <p className="text-gray-700 mb-4">
@@ -488,143 +449,14 @@ useEffect(() => {
                         </div>
                       </div>
                     </div>
-                  </div> */}
+                  </div>
                 </div>
               </div>
             )}
             
           </div>
         </div>
-        {/* Designer Profile Section */}
-        {/* <div className="mb-12">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6">Meet the Designer</h2>
-          <div className="bg-white p-6 rounded-lg shadow-md">
-            <div className="flex flex-col md:flex-row gap-6">
-              <div className="md:w-1/3">
-                <div className="aspect-square rounded-lg overflow-hidden mb-4">
-                  <img
-                    src="https://readdy.ai/api/search-image?query=Professional%2520portrait%2520of%2520a%2520female%2520interior%2520designer%2520in%2520her%252030s%2520with%2520a%2520confident%2520expression%252C%2520stylish%2520business%2520casual%2520attire%252C%2520in%2520a%2520bright%2520modern%2520design%2520studio%2520with%2520soft%2520natural%2520lighting%2520and%2520minimal%2520background&width=400&height=400&seq=109&orientation=squarish"
-                    alt="Emma Johnson - Interior Designer"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <div className="flex justify-center space-x-3 mb-4">
-                  <a href="#" className="text-gray-500 hover:text-indigo-600 transition cursor-pointer">
-                    <i className="fab fa-instagram text-lg"></i>
-                  </a>
-                  <a href="#" className="text-gray-500 hover:text-indigo-600 transition cursor-pointer">
-                    <i className="fab fa-pinterest text-lg"></i>
-                  </a>
-                  <a href="#" className="text-gray-500 hover:text-indigo-600 transition cursor-pointer">
-                    <i className="fab fa-linkedin-in text-lg"></i>
-                  </a>
-                  <a href="#" className="text-gray-500 hover:text-indigo-600 transition cursor-pointer">
-                    <i className="fas fa-globe text-lg"></i>
-                  </a>
-                </div>
-                <div className="text-center">
-                  <button className="w-full py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 transition whitespace-nowrap cursor-pointer !rounded-button">
-                    Contact Emma
-                  </button>
-                </div>
-              </div>
-              <div className="md:w-2/3">
-                <h3 className="text-xl font-bold text-gray-900 mb-2">Emma Johnson</h3>
-                <p className="text-indigo-600 font-medium mb-4">Minimalist Design Specialist</p>
-                <p className="text-gray-700 mb-4">
-                  Emma Johnson is an award-winning interior designer with over 10 years of experience specializing in minimalist and modern design. With a background in architecture and a passion for creating serene, functional spaces, Emma has transformed hundreds of homes across the country.
-                </p>
-                <p className="text-gray-700 mb-6">
-                  Her design philosophy centers on the belief that thoughtfully curated spaces with quality materials and clean lines create the most impactful and livable environments. Emma is known for her attention to detail, innovative space planning, and ability to balance aesthetics with functionality.
-                </p>
-                <div className="grid grid-cols-2 gap-4 mb-6">
-                  <div>
-                    <h4 className="font-medium text-gray-900 mb-2">Specializations</h4>
-                    <ul className="space-y-1 text-gray-700">
-                      <li className="flex items-center">
-                        <i className="fas fa-check text-indigo-600 mr-2 text-sm"></i>
-                        <span>Minimalist Design</span>
-                      </li>
-                      <li className="flex items-center">
-                        <i className="fas fa-check text-indigo-600 mr-2 text-sm"></i>
-                        <span>Open Concept Spaces</span>
-                      </li>
-                      <li className="flex items-center">
-                        <i className="fas fa-check text-indigo-600 mr-2 text-sm"></i>
-                        <span>Sustainable Materials</span>
-                      </li>
-                      <li className="flex items-center">
-                        <i className="fas fa-check text-indigo-600 mr-2 text-sm"></i>
-                        <span>Space Optimization</span>
-                      </li>
-                    </ul>
-                  </div>
-                  <div>
-                    <h4 className="font-medium text-gray-900 mb-2">Credentials</h4>
-                    <ul className="space-y-1 text-gray-700">
-                      <li className="flex items-center">
-                        <i className="fas fa-award text-indigo-600 mr-2 text-sm"></i>
-                        <span>NCIDQ Certified</span>
-                      </li>
-                      <li className="flex items-center">
-                        <i className="fas fa-award text-indigo-600 mr-2 text-sm"></i>
-                        <span>LEED Accredited Professional</span>
-                      </li>
-                      <li className="flex items-center">
-                        <i className="fas fa-award text-indigo-600 mr-2 text-sm"></i>
-                        <span>Masters in Interior Architecture</span>
-                      </li>
-                      <li className="flex items-center">
-                        <i className="fas fa-award text-indigo-600 mr-2 text-sm"></i>
-                        <span>Design Excellence Award 2024</span>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div> */}
-        {/* Similar Designs Section */}
-
-        {/* {(simelerDesigns && simelerDesigns.length > 0) &&
-         <div className="mb-12">
-         <div className="flex justify-between items-center mb-6">
-           <h2 className="text-2xl font-bold text-gray-900">Similar Designs You May Like</h2>
-           <Link to={'/'} className="text-indigo-600 hover:text-indigo-800 font-medium cursor-pointer">
-             View All <iFaChevronRight className="ml-1"/>
-           </Link> 
-         </div>
-         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-           {simelerDesigns.map((design) => (
-             <div key={design._id} className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition cursor-pointer">
-               <div className="h-64 overflow-hidden">
-                 <Link to={`/design/${design._id}`} className="block h-full">
-                   <img
-                     src={`http://localhost:5000/uploads/${design.images[0]}`}
-                     alt={design.title}
-                     className="w-full h-full object-cover hover:scale-105 transition duration-500"
-                     />
-                 </Link>
-               </div>
-               <div className="p-6">
-                 <h3 className="text-xl font-semibold text-gray-900 mb-2">{design.title}</h3>
-                 <div className="flex items-center justify-between">
-                   <div className="flex items-center">
-                     <div className="w-8 h-8 bg-indigo-100 rounded-full flex items-center justify-center mr-2">
-                       <span className="text-indigo-700 font-medium">L</span>
-                     </div>
-                     <span className="text-sm text-gray-700">Loay Alsaeed</span>
-                   </div>
-                   <button className="text-gray-400 hover:text-red-500 transition cursor-pointer !rounded-button">
-                   {isFavorite? <FaHeart className='text-red-500'/> : <FaRegHeart className='text-gray-500'/>}
-                   </button>
-                 </div>
-               </div>
-             </div>
-           ))}
-         </div>
-       </div> } */}
+        
        
         {/* Inquiry Form Section */}
         <div className="mb-12">
@@ -671,39 +503,7 @@ useEffect(() => {
                     placeholder="(123) 456-7890"
                   />
                 </div>
-                {/* <div>
-                  <label htmlFor="timeline" className="block text-sm font-medium text-gray-700 mb-1">Project Timeline</label>
-                  <select
-                    id="timeline"
-                    name="timeline"
-                    value={formData.timeline}
-                    onChange={handleInputChange}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 bg-white"
-                  >
-                    <option value="">Select timeline</option>
-                    <option value="Immediate (1-2 months)">Immediate (1-2 months)</option>
-                    <option value="Soon (3-6 months)">Soon (3-6 months)</option>
-                    <option value="Planning Phase (6+ months)">Planning Phase (6+ months)</option>
-                    <option value="Just exploring">Just exploring</option>
-                  </select>
-                </div> */}
-                {/* <div>
-                  <label htmlFor="budget" className="block text-sm font-medium text-gray-700 mb-1">Budget Range</label>
-                  <select
-                    id="budget"
-                    name="budget"
-                    value={formData.budget}
-                    onChange={handleInputChange}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 bg-white"
-                  >
-                    <option value="">Select budget range</option>
-                    <option value="Under $10,000">Under $10,000</option>
-                    <option value="$10,000 - $20,000">$10,000 - $20,000</option>
-                    <option value="$20,000 - $30,000">$20,000 - $30,000</option>
-                    <option value="$30,000+">$30,000+</option>
-                    <option value="Not sure yet">Not sure yet</option>
-                  </select>
-                </div> */}
+                
                 <div className="md:col-span-2">
                   <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">Additional Information</label>
                   <textarea

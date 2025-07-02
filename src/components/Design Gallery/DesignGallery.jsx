@@ -21,32 +21,17 @@ export default function DesignGallery({title}) {
         setFiltered(designs);
     }, [designs]);
 
-    // useEffect(() => {
-    //     console.log("Styles Provider:", stylesProvider);
-    // }, [stylesProvider])
-    
-
-    // const designStyles = ['Minimalist', 'Scandinavian', 'Industrial', 'Modern', 'Contemporary', 'Bohemian', '2D Plan', '3D Design'];
-    
-    // const roomTypes = ['Living Room', 'Bedroom', 'Kitchen', 'Bathroom', 'Office', 'Dining Room'];
-
     const handleFilter = () => {
     const result = designs.filter((design) => {
         const matchesSearch = design.title.toLowerCase().includes(searchQuery.toLowerCase());
-
-        // تحقق من المطابقة بالـ style حسب styleId وليس design.id
         const matchesStyle = !selectedStyle || selectedStyle === '' ? true : design.styleId === selectedStyle.id;
-
-        // const matchesRoom = selectedRoom ? design.roomType === selectedRoom : true;
         const matchesRoom = !selectedCategory || selectedCategory === '' ?  true : design.categoryId === selectedCategory.id;
-
         return matchesSearch && matchesStyle && matchesRoom;
     });
 
     setFiltered(result);
 };
 
-    // console.log(selectedCategory);
     return (
         <>
             <Filter
@@ -58,7 +43,7 @@ export default function DesignGallery({title}) {
                 setSelectedStyle={setSelectedStyle}
                 selectedCategory={selectedCategory}
                 setSelectedCategory={setSelectedCategory}
-                onApplyFilter={handleFilter} // ✅ ممرر باسم جديد وواضح
+                onApplyFilter={handleFilter} 
             />
             <section className="pb-12">
                 <div className="container mx-auto px-4">
@@ -87,15 +72,8 @@ export default function DesignGallery({title}) {
                                     <p className="text-gray-600 mb-4">{design.subTitle}</p>
                                     <div className="flex justify-between items-center">
                                         <div className="flex items-center">
-                                            {/* <div className="w-8 h-8 bg-indigo-100 rounded-full flex items-center justify-center mr-2">
-                                                <span className="text-indigo-600 font-medium ">L</span>
-                                            </div> */}
                                             <span className="text-gray-700"></span>
                                         </div>
-                                        {/* <div className="flex items-center text-gray-500">
-                                            <IoIosHeart className=' mr-1 text-red-500' />
-                                            <span>{design.likes}</span>
-                                        </div> */}
                                     </div>
                                 </div>
                             </div>

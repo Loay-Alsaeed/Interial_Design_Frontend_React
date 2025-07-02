@@ -94,7 +94,7 @@ function Contact() {
                 </div>
                 <div className="mr-4">
                   <h3 className="text-lg font-medium text-gray-900">Phone</h3>
-                  <p className="mt-1 text-gray-600">+966 12 345 6789</p>
+                  <p className="mt-1 text-gray-600">(+962) 791065580</p>
                 </div>
               </div>
 
@@ -106,7 +106,7 @@ function Contact() {
                 </div>
                 <div className="mr-4">
                   <h3 className="text-lg font-medium text-gray-900">Email Address</h3>
-                  <p className="mt-1 text-gray-600">info@example.com</p>
+                  <p className="mt-1 text-gray-600">loayalsaeed1234@gmail.com</p>
                 </div>
               </div>
 
