@@ -13,7 +13,6 @@ import Design3D from './pages/Design3d';
 import DesignForm from './pages/DesignForm';
 import EditDesign from './pages/EditDesign';
 import NotFound from './pages/NotFound';
-import DefaultDesign from './components/Design/DefaultDesign';
 
 function App() {
 
@@ -34,7 +33,6 @@ function App() {
           <Route path="/design-form" element={<DesignForm/>} />
           <Route path="/design-form/:id" element={<EditDesign/>} />
           <Route path="*" element={<NotFound/>} />
-          <Route path="def_design" element={<DefaultDesign/>} />
         </Routes>
         <Footer/>
       </Router>
